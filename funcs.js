@@ -1,3 +1,4 @@
+
 function moveToCenter(HTMLelement) {
     if (typeof HTMLelement == "object") {
         HTMLelement.style = `position:absolute; top:${(window.innerHeight / 2) - (HTMLelement.offsetHeight / 2)}px; left:${(window.innerWidth / 2) - (HTMLelement.offsetWidth / 2)}px;`;
@@ -6,7 +7,7 @@ function moveToCenter(HTMLelement) {
     }
 }
 function initElement(HTMLelement, propertys = {}, attributes = {}, ...classes) {
-    if (typeof HTMLelement == "object") {
+    if (typeof HTMLelement == "object" && typeof propertys == "object" && typeof attributes == "object") {
         for (let property in propertys) {
             HTMLelement[property] = propertys[property];
         }
