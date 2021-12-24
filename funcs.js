@@ -5,7 +5,7 @@ function moveToCenter(HTMLelement) {
         throw new Error("Wrong argument type [HTMLelement]!");
     }
 }
-function initElement(HTMLelement, propertys = {}, attributes = {}, classes = []) {
+function initElement(HTMLelement, propertys = {}, attributes = {}, ...classes) {
     if (typeof HTMLelement == "object") {
         for (let property in propertys) {
             HTMLelement[property] = propertys[property];
@@ -13,8 +13,8 @@ function initElement(HTMLelement, propertys = {}, attributes = {}, classes = [])
         for (let attribute in attributes) {
             HTMLelement.setAttribute(attribute, attributes[attribute]);
         }
-        for (let className in classes) {
-            HTMLelement.classList.add(classes[className]);
+        for (let className of classes) {
+            HTMLelement.classList.add(className);
         }
     } else {
         throw new Error("Wrong argument type [HTMLelement]!");
