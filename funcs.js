@@ -18,6 +18,6 @@ function initElement(HTMLelement, propertys = {}, attributes = {}, ...classes) {
             HTMLelement.classList.add(className);
         }
     } else {
-        throw new Error("Wrong argument type [HTMLelement]!");
+        throw new Error("Wrong some argument type!");
     }
 }
