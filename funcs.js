@@ -21,3 +21,7 @@ function initElement(HTMLelement, propertys = {}, attributes = {}, ...classes) {
         throw new Error("Wrong some argument type!");
     }
 }
+function randomInt(min = 0, max = 100) {
+    let rand = min - 0.5 + Math.random() * (max - min + 1);
+    return Math.round(rand);
+}
