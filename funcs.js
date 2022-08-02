@@ -6,21 +6,28 @@ function moveToCenter(HTMLelement) {
         throw new Error("Wrong argument type [HTMLelement]!");
     }
 }
-function initElement(HTMLelement, propertys = {}, attributes = {}, ...classes) {
-    if (typeof HTMLelement == "object" && typeof propertys == "object" && typeof attributes == "object") {
-        for (let property in propertys) {
-            HTMLelement[property] = propertys[property];
+function initElement(HTMLelement, params = { attrs:{}, props:{}, classes:[], newParent: { node: null, method: "append" } }) {
+    if(!HTMLelement.tagName){
+        if(typeof(HTMLelement) == "string"){
+            HTMLelement = document.createElement(HTMLelement);
+        }else{
+            return new Error("Wrong first argument!");
         }
-        for (let attribute in attributes) {
-            HTMLelement.setAttribute(attribute, attributes[attribute]);
+        for(let attr in params.attrs){
+            HTMLelement.setAttribute(attr,params.attrs[attr]);
         }
-        for (let className of classes) {
+        for(let prop in params.props){
+            HTMLelement[prop] = params.props[prop];
+        }
+        for(let className of params.classes){
             HTMLelement.classList.add(className);
         }
-    } else {
-        throw new Error("Wrong some argument type!");
+        if(params.newParent.node && params.newParent.node.tagName){
+            params.newParent[params.newParent.method](HTMLelement);
+        }
     }
 }
+
 function randomInt(min = 0, max = 100) {
     let rand = min - 0.5 + Math.random() * (max - min + 1);
     return Math.round(rand);
