@@ -27,8 +27,28 @@ function initElement(HTMLelement, params = { attrs:{}, props:{}, classes:[], new
         }
     }
 }
-
 function randomInt(min = 0, max = 100) {
     let rand = min - 0.5 + Math.random() * (max - min + 1);
     return Math.round(rand);
+}
+function newTag(obj){
+    let newEl = document.createElement(obj.tag);
+    if(obj.attrs){
+        for(let attr in obj.attrs){
+            newEl.setAttribute(attr, obj.attrs[attr]);
+        }
+    }
+    if(obj.props){
+        for(let prop in obj.props){
+            newEl[prop] = obj.props[prop];
+        }
+    }
+    if(obj.classes){
+        for(let className of obj.classes){
+            newEl.classList.add(className);
+        }
+    }
+    if(obj.appendTarget){
+        obj.appendTarget[obj.appendMode](newEl);
+    }
 }
